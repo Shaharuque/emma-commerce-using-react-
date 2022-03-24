@@ -1,0 +1,43 @@
+.shop-container-style{
+    display: grid;
+    grid-template-columns: 4fr 1fr;      /*4fr means jototuku jaiga asey tar 4 vag nibey*/
+    margin-left: 25px;
+    
+}
+.products-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap:45px;
+    margin-top: 100px;
+    
+}
+
+.cart-container{
+    border: 1px solid #95A0A7 ;
+    margin-left: 10px;
+    background-color: rgba(255, 153, 0, 0.3);;
+}
+
+.order-summary-style{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    color: #1C2B35;
+    text-align: center;
+}
+.selected-items-style{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+
+/* to make responsive with devices */
+@media screen and (max-width:1100px) {
+    .products-container{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+}

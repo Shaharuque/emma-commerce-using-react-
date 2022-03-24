@@ -1,0 +1,65 @@
+.single-product{
+    border: 1px solid #95A0A7;
+    border-radius: 8px;
+    background-color: #ffffff;
+    height: 520px;
+    width:300px;
+    position: relative;       /*button ar positioning ar jnno*/
+    
+}
+.single-product img{
+    height: 286px;
+    width: 286px;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-top: 8px;
+}
+
+.info-style{
+    margin-left: 7px;
+}
+.product-name{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    margin-bottom: 5px;
+    color: #0E161A;
+    
+}
+.product-price{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    margin: 0px;
+    color:#0E161A;
+    
+}
+.paragraph-style{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    margin-top: 20px;
+    color: #2A414F;
+    
+}
+
+.btn-style{
+    width: 100%;
+    background-color: #FFE0B3;
+    border: none;
+    border-radius: 0px 0px 8px 8px;
+    /*button ar position ekdom card ar nichey anlam*/
+    position: absolute;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-style:hover{
+    background-color: #ff9900;
+}

@@ -1,0 +1,18 @@
+.nav-style{
+    height: 80px;
+    background-color: #1C2B35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 120px;
+    padding-right: 70px;
+}
+.a-style{
+    text-decoration: none;
+    color: aliceblue;
+    margin-right: 10px;
+}
+
+.a-style:hover{
+    color: #ff9900;
+}
