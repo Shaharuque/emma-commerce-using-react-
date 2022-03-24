@@ -3,17 +3,21 @@ import './Cart.css'
 
 //{cart} means directly destructring aita k amra const {cart}=props aivabeo likhtey partam
 const Cart = ({cart}) => {
-    //console.log(cart)
+    console.log(cart)
 
     //task:cart array tey joto gula product thakbey tader price property r value niye seita add korey total ta ber kora(normal way tey cart array loop through korey kaj ta kora jay)
     let totalPrice=0
     let totalShippingCost=0
+    let productQantity=0
     for(let product of cart){
-        totalPrice=totalPrice+product.price
+        totalPrice=totalPrice+(product.price*product.quantity)
         totalShippingCost+=product.shipping
+        productQantity+=product.quantity
     }
     //console.log(totalPrice)
     //console.log(totalShippingCost)
+    //console.log(productQantity)
+
     //tax=10% on total price
     const tax=totalPrice*(10/100)
     const grandTotal= parseFloat(totalPrice+totalShippingCost+tax)
@@ -22,7 +26,7 @@ const Cart = ({cart}) => {
         <div className="cart">
             <h1 className='order-summary-style'>Order Summary</h1>
             <div className='cart-info'>
-                <p>Selected Items: {cart.length}</p>
+                <p>Selected Items: {productQantity}</p>
                 <p>Total Price: ${totalPrice}</p>
                 <p>Total Shipping Charge: ${totalShippingCost}</p>
                 <p>Tax: ${tax.toFixed(2)}</p>

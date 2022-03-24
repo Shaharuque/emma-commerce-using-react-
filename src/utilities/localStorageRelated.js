@@ -3,7 +3,7 @@
 const addToLocalStorage=(productId)=>{
     //console.log('clicked product id:', productId)
     let cart
-    //local storage thekey key provide korey ta stringify-value get kortese
+    //local storage thekey {key='cart-items'} provide korey tar stringify-value get kortese
     const storedCart=localStorage.getItem('cart-items')
     if(storedCart){
         cart=JSON.parse(storedCart)
@@ -26,4 +26,19 @@ const addToLocalStorage=(productId)=>{
     localStorage.setItem('cart-items',JSON.stringify(cart))
 }
 
-export {addToLocalStorage}
+//By calling this function we can get stored data from localStorage
+const getStoredCartData=()=>{
+    let cart
+    //local storage thekey {key='cart-items'} provide korey tar stringify-value get kortese
+    const storedCart=localStorage.getItem('cart-items')
+    if(storedCart){
+        //stringified value k obj a convert kora hoccey
+        cart=JSON.parse(storedCart)
+    }
+    else{
+        cart={}
+    }
+    return cart       //cart object return korbey
+}
+
+export {addToLocalStorage,getStoredCartData}
