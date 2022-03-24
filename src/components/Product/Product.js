@@ -20,7 +20,7 @@ const Product = (props) => {
                     <p >Ratings: {ratings} Star</p>
                 </div>
             </div>
-            {/*btn clicked event handling*/}
+            {/*btn clicked event handling function declared in Shop.js component as Shop.js is parent component so btn clicked event handling function declared in Shop component*/}
             <button onClick={()=>handleCart(product)} className='btn-style'>
                 <p style={{color: '#0E161A',marginRight:'5px'}}>Add to Cart</p>
                 <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>

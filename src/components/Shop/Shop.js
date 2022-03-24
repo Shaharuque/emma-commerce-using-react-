@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
 
 const Shop = () =>{
     const [products,setProducts]=useState([])
-    //for the purpose of cart state related
+
+    //for the purpose of cart state update related
     const [cart, setCart]=useState([])
 
     //fetching data 
@@ -15,6 +17,7 @@ const Shop = () =>{
     },[])
     //console.log(products)
 
+    //click event handler function
     const handleCart=(product)=>{
         //console.log(product)
         //normally array tey push korey new item add korar jinish ta react a state update ar khetrey kora jabey na. array ar copy create korey then setCart() call korey 'cart' ar state/value change kora lagbey
@@ -34,9 +37,8 @@ const Shop = () =>{
 
             <div className="cart-container">
                 <h1 className='order-summary-style'>Order Summary</h1>
-                <div >
-                    <p className='selected-items-style'>Selected Items:{cart.length}</p>
-                </div>
+                {/*cart is a array of product object after updating the state of cart using setCart()*/}
+                <Cart cart={cart}></Cart>
             </div>
         </div>
     );
