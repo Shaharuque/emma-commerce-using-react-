@@ -3,7 +3,7 @@ import './Cart.css'
 
 //{cart} means directly destructring aita k amra const {cart}=props aivabeo likhtey partam
 const Cart = ({cart}) => {
-    console.log(cart)
+    //console.log(cart)
 
     //task:cart array tey joto gula product thakbey tader price property r value niye seita add korey total ta ber kora(normal way tey cart array loop through korey kaj ta kora jay)
     let totalPrice=0
@@ -12,8 +12,8 @@ const Cart = ({cart}) => {
         totalPrice=totalPrice+product.price
         totalShippingCost+=product.shipping
     }
-    console.log(totalPrice)
-    console.log(totalShippingCost)
+    //console.log(totalPrice)
+    //console.log(totalShippingCost)
     //tax=10% on total price
     const tax=totalPrice*(10/100)
     const grandTotal= parseFloat(totalPrice+totalShippingCost+tax)

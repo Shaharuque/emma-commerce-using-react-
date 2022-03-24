@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { addToLocalStorage } from '../../utilities/localStorageRelated';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
@@ -23,6 +24,8 @@ const Shop = () =>{
         //normally array tey push korey new item add korar jinish ta react a state update ar khetrey kora jabey na. array ar copy create korey then setCart() call korey 'cart' ar state/value change kora lagbey
         const newCart=[...cart,product]  //spread operator use kora hoisey
         setCart(newCart)
+        //storing clicked product into localStorage
+        addToLocalStorage(product.id)
     }
     //console.log(cart)
 
