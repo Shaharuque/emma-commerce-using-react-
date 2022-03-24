@@ -1,0 +1,32 @@
+.cart{
+    
+    position: sticky;
+    top:0;  /*top 0 tey atkai thakbey*/
+}
+.order-summary-style{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    color: #1C2B35;
+    text-align: center;
+}
+.cart-info{
+    padding: 15px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.cart-btn-style{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.cart-btn-style button{
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: rgb(26, 119, 88);
+    color: white;
+}

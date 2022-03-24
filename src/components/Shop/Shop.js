@@ -35,8 +35,7 @@ const Shop = () =>{
                 }
             </div>
 
-            <div className="cart-container">
-                <h1 className='order-summary-style'>Order Summary</h1>
+            <div className='cart-container'>
                 {/*cart is a array of product object after updating the state of cart using setCart()*/}
                 <Cart cart={cart}></Cart>
             </div>

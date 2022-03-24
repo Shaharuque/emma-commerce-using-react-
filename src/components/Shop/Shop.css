@@ -15,23 +15,9 @@
 .cart-container{
     border: 1px solid #95A0A7 ;
     margin-left: 10px;
-    background-color: rgba(255, 153, 0, 0.3);;
+    background-color: rgba(255, 153, 0, 0.3);
 }
 
-.order-summary-style{
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    color: #1C2B35;
-    text-align: center;
-}
-.selected-items-style{
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-}
 
 
 /* to make responsive with devices */
