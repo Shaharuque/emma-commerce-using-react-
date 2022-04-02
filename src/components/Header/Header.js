@@ -1,5 +1,6 @@
 import React from 'react';
 //import { Container, Nav} from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import './Header.css'
 import logo from '../../images/Logo.svg'
 
@@ -7,15 +8,17 @@ import logo from '../../images/Logo.svg'
 const Header = () => {
     return (
         <nav className='nav-style'>
-            <img src={logo} alt="" />
+            <Link className='link-style' to='/'>
+                <img src={logo} alt="" />
+            </Link>
             <div>
-                <a className='a-style' href="/home">Home</a>
-                <a className='a-style' href="/order">Order</a>
-                <a className='a-style' href="/inventory">Inventory</a>
-                <a className='a-style' href="/about">About</a>
+                <Link className='link-style' to='/shop'>Shop</Link>
+                <Link className='link-style' to='/orders'>Order</Link>
+                <Link className='link-style' to='/inventory'>Inventory</Link>
+                <Link className='link-style' to='/about'>About</Link>
             </div>
         </nav>
-       
+
     );
 };
 

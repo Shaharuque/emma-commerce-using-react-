@@ -41,4 +41,19 @@ const getStoredCartData=()=>{
     return cart       //cart object return korbey
 }
 
-export {addToLocalStorage,getStoredCartData}
+//product id ar against a local storage/DB thekey  data remove
+const removeFromDB=(deletedProductId)=>{
+    let cart
+    const storedCart=localStorage.getItem('cart-items')
+    if(storedCart){
+        cart=JSON.parse(storedCart)
+        if(deletedProductId in cart){
+            delete cart[deletedProductId]
+            localStorage.setItem('cart-items',JSON.stringify(cart))
+        }
+    }
+    //return cart
+    
+}
+
+export {addToLocalStorage,getStoredCartData,removeFromDB}

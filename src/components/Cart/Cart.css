@@ -19,14 +19,11 @@
     font-size: 18px;
 }
 
-.cart-btn-style{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
-.cart-btn-style button{
+.clear-btn-style{
     margin-bottom: 10px;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: rgb(26, 119, 88);
     color: white;
+    /* btn ar width 90% nilam */
+    width: 90%;  
 }

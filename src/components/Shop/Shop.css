@@ -18,7 +18,15 @@
     background-color: rgba(255, 153, 0, 0.3);
 }
 
-
+.review-btn-style{
+    background-color: rgb(1, 22, 22);
+    color: white;
+    border-radius: 8px;
+    border:1px solid rgb(9, 95, 95);
+    padding: 14px;
+    width: 90%;
+    cursor: pointer;
+}
 
 /* to make responsive with devices */
 @media screen and (max-width:1100px) {

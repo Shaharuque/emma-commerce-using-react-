@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useProducts } from '../../hook/useProducts';
 import { addToLocalStorage, getStoredCartData } from '../../utilities/localStorageRelated';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
+import { useNavigate } from "react-router-dom";
 
 const Shop = () =>{
-    const [products,setProducts]=useState([])
+    //const [products,setProducts]=useState([])
+    //custom hook use korey we can get products array of object and set it into products
+    const [products,setProducts]=useProducts()
 
     //for the purpose of cart state update related and cart ta k Cart component a via props pathano hobey
     const [cart, setCart]=useState([])
 
-    //fetching data 
+    /*//fetching data 
     useEffect(()=>{
         fetch('products.json')
         .then(res=>res.json())
         .then(data=>setProducts(data))
     },[])
-    //console.log(products)
+    //console.log(products)*/
 
+    
+    //Ai nicher part tuku basically refresh/website revisit korley order-summary r calculation ta jeno remove na hoye jay seita handle kortesey by the help of local storage. LocalStorage ar help niye cart array tey always clicked product gulur data thaktesey tai page refresh korleo calculation ja korsi Cart.js component a sheita show hobey
     //fetching data from localStorage by calling getStoredCartData()
     useEffect(()=>{
         const storedData=getStoredCartData()
@@ -45,8 +52,8 @@ const Shop = () =>{
         setCart(savedCart) //localstorage ar data akhn cart ar moddhey thakbey so easily 
 
     },[products]) //[products] meaans products ar value/state jotobar change hobey totobar useEffect() ta call hobey jodi [] empty hoto tahley useEffect only ekbar e call hoto
-
-
+    
+    
 
     //click event handler function(protibar btn click a ai function call hobey)
     const handleCart=(selectedProduct)=>{
@@ -72,12 +79,19 @@ const Shop = () =>{
 
         //normally array tey push korey new item add korar jinish ta react a state update ar khetrey kora jabey na. array ar copy create korey then setCart() call korey 'cart' ar state/value change kora lagbey
         /////const newCart=[...cart,product]  //spread operator use kora hoisey
-        setCart(clickedItems)
+        setCart(clickedItems) //Add to btn clicked product gulo cart array tey add hobey
+
         //storing clicked product into localStorage
         addToLocalStorage(selectedProduct.id)
     }
     //console.log(cart)
 
+
+    //<Link to=''/> aita use na korey navigate use koretse and both same kaj e korbey 
+    const navigate=useNavigate()
+    const goToOrderPage=()=>{
+        navigate('/orders')
+    }
 
     return (
         <div className='shop-container-style'>
@@ -89,7 +103,10 @@ const Shop = () =>{
 
             <div className='cart-container'>
                 {/*cart is a array of product object after updating the state of cart using setCart()*/}
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart}>
+                    {/*btn a click korar sathey sathey '/orders' page a niye jabey*/}
+                    <button onClick={goToOrderPage} className='review-btn-style' >Review Order</button>
+                </Cart>
             </div>
         </div>
     );

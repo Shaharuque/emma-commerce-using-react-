@@ -2,8 +2,9 @@ import React from 'react';
 import './Cart.css'
 
 //{cart} means directly destructring aita k amra const {cart}=props aivabeo likhtey partam
-const Cart = ({cart}) => {
-    console.log(cart)
+const Cart = (props) => {
+    const {cart}=props
+    //console.log(cart)
 
     //task:cart array tey joto gula product thakbey tader price property r value niye seita add korey total ta ber kora(normal way tey cart array loop through korey kaj ta kora jay)
     let totalPrice=0
@@ -32,13 +33,14 @@ const Cart = ({cart}) => {
                 <p>Tax: ${tax.toFixed(2)}</p>
                 <h4>Grand Total: ${grandTotal.toFixed(2)}</h4>
             </div>
-            <div className='cart-btn-style'>
-                <button>
+            <div style={{display:'flex',flexDirection:'column' ,alignItems:'center'}}>
+                <button className='clear-btn-style'>
                     <p>Clear Cart</p>
                 </button>
-                <button>
+                {/*<button>
                     <p>Review Order</p>
-                </button>
+                </button>*/}
+                {props.children}
             </div>
         </div>
     );

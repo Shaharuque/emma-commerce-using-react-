@@ -1,0 +1,31 @@
+.reviewProduct{
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 5px 5px grey;
+    margin-top: 20px;
+    /* background-color: rgb(136, 209, 209); */
+}
+
+.review-details{
+    width: 100%;      /*aita ekto tricky part need to remember width 100% na niley space-between kaj korsilo na */
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-left: 20px;
+   padding: 10px;
+}
+.review-details p{
+    color: rgb(56, 54, 54);
+    margin: 5px;
+    font-weight: bold;
+}
+.review-button-style{
+    background-color: #EB5757;
+    color: white;
+    border: 1px solid #EB5757;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
