@@ -5,11 +5,16 @@ import './Header.css'
 import logo from '../../images/Logo.svg'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 
 const Header = () => {
     const [user]=useAuthState(auth)
     console.log(user)
+
+    const handleSignout=()=>{
+        signOut(auth);
+    }
     return (
         <nav className='nav-style'>
             <Link className='link-style' to='/'>
@@ -23,7 +28,7 @@ const Header = () => {
                 
                 {
                     user ?
-                    <button>sign-out</button>
+                    <button onClick={handleSignout}>sign-out</button>
                     :
                     <Link className='link-style' to='/login' >Login</Link>
                 }

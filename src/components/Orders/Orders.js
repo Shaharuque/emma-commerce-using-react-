@@ -40,8 +40,8 @@ const Orders = () => {
 
 
     const navigate=useNavigate()
-    const goToCheckOutPage=()=>{
-        navigate('/inventory')
+    const goToShipmentPage=()=>{
+        navigate('/shipment')
     }
 
     return (
@@ -54,7 +54,7 @@ const Orders = () => {
             </div>
            <div className='cart-container'>
                 <Cart cart={cart}>
-                    <button onClick={goToCheckOutPage} className='proceed-btn'>Procced CheckOut</button>
+                    <button onClick={goToShipmentPage} className='proceed-btn'>Procced shipment</button>
                 </Cart>
            </div>
            

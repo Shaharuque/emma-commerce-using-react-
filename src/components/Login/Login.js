@@ -38,7 +38,7 @@ const Login = () => {
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center',height:'100vh'}}>
             <div className='form-container'>
                 <div>
                     <h4 className='heading-style'>Login </h4>

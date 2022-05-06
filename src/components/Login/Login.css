@@ -1,7 +1,7 @@
 
 
 .form-container{
-    margin-top: 50px;
+    margin: 50px 0;
     width: 600px;
     /*margin: 0 auto;    */   /*center a ashbey paarticular div ta*/
     background: #FFFFFF;
@@ -9,6 +9,7 @@
     border-radius: 8px;
     display: flex;
     justify-content: center;
+    
 }
 .heading-style{
     font-size: 35px;
