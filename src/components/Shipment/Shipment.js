@@ -49,7 +49,7 @@ const Shipment = () => {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div className='form-container'>
             <div>
-                <h4 className='heading-style'>Shipping Informations </h4>
+                <h4 className='heading-style'>Your Shipping Informations </h4>
 
                 <form onSubmit={handleCreateUser}>
                     <div className="input-group">

@@ -14,9 +14,7 @@ const Login = () => {
         error,
       ] = useSignInWithEmailAndPassword(auth);
 
-    const navigate=useNavigate()  
-    let location = useLocation();
-    let from = location.state?.from?.pathname || "/";
+  
 
 
     const handleEmail=(e)=>{
@@ -32,6 +30,9 @@ const Login = () => {
         signInWithEmailAndPassword(email, password)
     }
 
+    const navigate=useNavigate()  
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     
     if (user) {
         navigate(from, { replace: true })
