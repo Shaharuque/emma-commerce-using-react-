@@ -5,7 +5,7 @@ const useProducts=()=>{
 
     //data fetch
     useEffect(()=>{
-        fetch('products.json')
+        fetch('http://localhost:5000/product') //out created own api, ai api tey hit korley data pabo
         .then(res=>res.json())
         .then(data=>setProducts(data))
     },[])

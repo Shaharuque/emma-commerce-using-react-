@@ -21,15 +21,15 @@ const Orders = () => {
        // console.log(deletedProduct)
        //jei product ar delete btn a click hoisey sheita passi now cart thekey delete btn clicked  hoisey amn product cart thekey sorai dibo
        //cart ar sob gula product loop through hoye condition check hobey
-       const restProductsCart=cart.filter(product=>product.id!==deletedProduct.id)
+       const restProductsCart=cart.filter(product=>product._id!==deletedProduct._id)
        setCart(restProductsCart)  //UI tey Show koranor jnno
 
-       removeFromDB(deletedProduct.id)  //deleted btn a clicked product localstorage/DB thekeo deletation
+       removeFromDB(deletedProduct._id)  //deleted btn a clicked product localstorage/DB thekeo deletation
        /*
        let cartUpdated=[]
-       const afterRemove=removeFromDB(deletedProduct.id)
+       const afterRemove=removeFromDB(deletedProduct._id)
        for(let productId in afterRemove){
-           const remainingProduct= products.find(product=>product.id===productId)
+           const remainingProduct= products.find(product=>product._id===productId)
            const quantity=afterRemove[productId]
            remainingProduct.quantity=quantity
            cartUpdated.push(remainingProduct)
@@ -49,7 +49,7 @@ const Orders = () => {
             <div className='odered-items-review'>
                 {/*<p style={{textAlign:'center'}}>Clicked products inside Cart</p>*/}
                 {
-                    cart.map(cartProduct=><ReviewItem key={cartProduct.id} cartProduct={cartProduct} removeCartProduct={removeCartProduct}> <h1>Shaik</h1></ReviewItem>)
+                    cart.map(cartProduct=><ReviewItem key={cartProduct._id} cartProduct={cartProduct} removeCartProduct={removeCartProduct}> <h1>Shaik</h1></ReviewItem>)
                 }
             </div>
            <div className='cart-container'>

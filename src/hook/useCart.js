@@ -14,7 +14,7 @@ const useCart=(products)=>{
         //ai 'productId' ta basically jei product click hoisey shei product ar product id ja localstorage a stored
         for(let productId in storedData){
             //check korbo j local storage thekey get kora key/productId main jei products asey tar kono product ar id ar sathey miley kina
-            const addedProduct=products.find(product=>product.id===productId)
+            const addedProduct=products.find(product=>product._id===productId)
 
             if(addedProduct){
                 const singleProductQuantity=storedData[productId]

@@ -14,7 +14,19 @@ const Shop = () =>{
 
     //for the purpose of cart state update related and cart ta k Cart component a via props pathano hobey
     const [cart, setCart]=useState([])
+    const [pageCount,setPageCount]=useState(0)
 
+    //get total products from DB collection
+    useEffect(()=>{
+        fetch('http://localhost:5000/productCount')
+        .then(res=>res.json())
+        .then(data=>{
+            const count=data.count   //db ar collection a jotogula product tar count pabo
+            const pages=Math.ceil(count/10)
+            setPageCount(pages)
+        })
+    },[])
+    console.log(pageCount)
     /*//fetching data 
     useEffect(()=>{
         fetch('products.json')
@@ -35,7 +47,7 @@ const Shop = () =>{
         for(let productId in storedData){
             //products ar moddhey jei array of object pabo sheita thekey localstorage a storeData ar productid(key) ar sathey miley shei particular product ar info get kortese addedProduct a
             //addedProduct a at a time ekta resulted product ar info thakbey
-            const addedProduct= products.find(product=>product.id===productId)
+            const addedProduct= products.find(product=>product._id===productId)
             if(addedProduct){
                 //console.log(addedProduct)
 
@@ -61,7 +73,7 @@ const Shop = () =>{
 
         let clickedItems
         //checking agey thekey e ki selectedProduct is in the cart or not
-        const productExists=cart.find(product=>product.id===selectedProduct.id)
+        const productExists=cart.find(product=>product._id===selectedProduct._id)
 
         //jodi selectedProduct cart a na thekey thakey tahley
         if(!productExists){
@@ -71,7 +83,7 @@ const Shop = () =>{
         //jodi selectedProduct cart a agey thekei thakey tahley productExists ar quantity 1 koray barbey
         else{
             //jei product cart a asey sei product badh a baki product gula ber kori
-            const restProducts=cart.filter(product=>product.id!==selectedProduct.id) //restProducts will be an array
+            const restProducts=cart.filter(product=>product._id!==selectedProduct._id) //restProducts will be an array
             productExists.quantity+=1
             clickedItems=[...restProducts,productExists]
         }
@@ -82,7 +94,7 @@ const Shop = () =>{
         setCart(clickedItems) //Add to btn clicked product gulo cart array tey add hobey
 
         //storing clicked product into localStorage
-        addToLocalStorage(selectedProduct.id)
+        addToLocalStorage(selectedProduct._id)
     }
     //console.log(cart)
 
@@ -94,10 +106,11 @@ const Shop = () =>{
     }
 
     return (
+        <>
         <div className='shop-container-style'>
             <div className="products-container">
                 {
-                    products.map(product=><Product key={product.id} product={product} handleCart={handleCart}></Product>)
+                    products.map(product=><Product key={product._id} product={product} handleCart={handleCart}></Product>)
                 }
             </div>
 
@@ -109,6 +122,14 @@ const Shop = () =>{
                 </Cart>
             </div>
         </div>
+        
+        {/* pagination ar kaj hoisey */}
+        <div className='pagination'>
+                    {
+                        [...Array(pageCount).keys()].map(number=><button className='selected'>{number+1}</button>)
+                    }
+        </div>
+        </>
     );
 };
 
