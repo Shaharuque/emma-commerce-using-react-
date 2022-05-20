@@ -13,7 +13,8 @@ const Orders = () => {
 
     //useProducts() and useCart() both are my custom hook
     const [products, setProducts] = useProducts()
-    const [cart,setCart] =useCart((products))
+    // const [cart,setCart] =useCart((products))
+    const [cart,setCart] =useCart()
     //as cart will be a clicked products array
     //console.log(cart)
 

@@ -6,17 +6,34 @@ import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
 import { useNavigate } from "react-router-dom";
+import { useSignInWithYahoo } from 'react-firebase-hooks/auth';
+import { useCart } from '../../hook/useCart';
 
 const Shop = () =>{
     //const [products,setProducts]=useState([])
     //custom hook use korey we can get products array of object and set it into products
-    const [products,setProducts]=useProducts()
+    //const [products,setProducts]=useProducts()
 
     //for the purpose of cart state update related and cart ta k Cart component a via props pathano hobey
-    const [cart, setCart]=useState([])
-    const [pageCount,setPageCount]=useState(0)
+    // const [cart, setCart]=useState([])
 
-    //get total products from DB collection
+    //node ar kaj korsi tai
+    const [cart, setCart]=useCart()
+
+    //for pagination purpose
+    const [pageCount,setPageCount]=useState(0)
+    const [page,setPage]=useState(0)
+    const [size, setSize] = useState(10);
+
+    //fetch all products from api
+    const [products,setProducts]=useState([])
+    useEffect(()=>{
+        fetch(`http://localhost:5000/product?page=${page}&size=${size}`) //our created own api, ai api tey hit korley data pabo and ai api ar sathey query send kora hocchey  backend a. [query: ekta page ar jnno kotogula product fetch kora lagbey sheita]
+        .then(res=>res.json())
+        .then(data=>setProducts(data))
+    },[page,size])  //page number or page size kono ekta kicho change holei api tey hit korey data fetch korbey tai page and size are the dependencies
+    
+    //get total products number from DB collection
     useEffect(()=>{
         fetch('http://localhost:5000/productCount')
         .then(res=>res.json())
@@ -36,34 +53,34 @@ const Shop = () =>{
     //console.log(products)*/
 
     
-    //Ai nicher part tuku basically refresh/website revisit korley order-summary r calculation ta jeno remove na hoye jay seita handle kortesey by the help of local storage. LocalStorage ar help niye cart array tey always clicked product gulur data thaktesey tai page refresh korleo calculation ja korsi Cart.js component a sheita show hobey
-    //fetching data from localStorage by calling getStoredCartData()
-    useEffect(()=>{
-        const storedData=getStoredCartData()
-        //console.log(storedData)
+    // //Ai nicher part tuku basically refresh/website revisit korley order-summary r calculation ta jeno remove na hoye jay seita handle kortesey by the help of local storage. LocalStorage ar help niye cart array tey always clicked product gulur data thaktesey tai page refresh korleo calculation ja korsi Cart.js component a sheita show hobey
+    // //fetching data from localStorage by calling getStoredCartData()
+    // useEffect(()=>{
+    //     const storedData=getStoredCartData()
+    //     //console.log(storedData)
 
-        let savedCart=[]
-        //object loop through ar for-in use hoy
-        for(let productId in storedData){
-            //products ar moddhey jei array of object pabo sheita thekey localstorage a storeData ar productid(key) ar sathey miley shei particular product ar info get kortese addedProduct a
-            //addedProduct a at a time ekta resulted product ar info thakbey
-            const addedProduct= products.find(product=>product._id===productId)
-            if(addedProduct){
-                //console.log(addedProduct)
+    //     let savedCart=[]
+    //     //object loop through ar for-in use hoy
+    //     for(let productId in storedData){
+    //         //products ar moddhey jei array of object pabo sheita thekey localstorage a storeData ar productid(key) ar sathey miley shei particular product ar info get kortese addedProduct a
+    //         //addedProduct a at a time ekta resulted product ar info thakbey
+    //         const addedProduct= products.find(product=>product._id===productId)
+    //         if(addedProduct){
+    //             //console.log(addedProduct)
 
-                //local storage thekey storedDate(obj) get korsi seikhaney each product ar jnno productId ar against a quantity/value asey so shei quantity ta singleProductQuantity tey store korbo
-                const singleProductQuantity=storedData[productId]
-                //console.log(singleProductQuantity)
+    //             //local storage thekey storedDate(obj) get korsi seikhaney each product ar jnno productId ar against a quantity/value asey so shei quantity ta singleProductQuantity tey store korbo
+    //             const singleProductQuantity=storedData[productId]
+    //             //console.log(singleProductQuantity)
 
-                //setting the localStored each product quantity to addedProduct(obj) quantity
-                addedProduct.quantity=singleProductQuantity  //full jei 'products' array of obj asey sheikhaney o kinto quantity change ar effect porbey
-                savedCart.push(addedProduct) //basically local storage ar saved product with quantity stored kora hocchey savedCart array tey
-                //console.log(savedCart)
-            }
-        }
-        setCart(savedCart) //localstorage ar data akhn cart ar moddhey thakbey so easily 
+    //             //setting the localStored each product quantity to addedProduct(obj) quantity
+    //             addedProduct.quantity=singleProductQuantity  //full jei 'products' array of obj asey sheikhaney o kinto quantity change ar effect porbey
+    //             savedCart.push(addedProduct) //basically local storage ar saved product with quantity stored kora hocchey savedCart array tey
+    //             //console.log(savedCart)
+    //         }
+    //     }
+    //     setCart(savedCart) //localstorage ar data akhn cart ar moddhey thakbey so easily 
 
-    },[products]) //[products] meaans products ar value/state jotobar change hobey totobar useEffect() ta call hobey jodi [] empty hoto tahley useEffect only ekbar e call hoto
+    // },[products]) //[products] meaans products ar value/state jotobar change hobey totobar useEffect() ta call hobey jodi [] empty hoto tahley useEffect only ekbar e call hoto
     
     
 
@@ -124,10 +141,21 @@ const Shop = () =>{
         </div>
         
         {/* pagination ar kaj hoisey */}
+        {/* page UI tey show korar somoy 1 barai dekhabo but basically page number is starts from 0 */}
         <div className='pagination'>
                     {
-                        [...Array(pageCount).keys()].map(number=><button className='selected'>{number+1}</button>)
+                        [...Array(pageCount).keys()].map(number=><button 
+                            className={page===number ? 'selected':''}
+                            onClick={()=>setPage(number)}>{number+1}
+                            </button>)
                     }
+                    {/* ekta particular page a koto gula product dekhatey chai tar code */}
+                    <select onChange={(e)=>setSize(e.target.value)}>
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
         </div>
         </>
     );
